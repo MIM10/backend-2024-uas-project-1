@@ -5,7 +5,7 @@ const mysql = require("mysql");
 require("dotenv").config();
 
 // destructing object process.env
-const { DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE } = process.env;
+const { DB_HOST, DB_USERNAME, DB_PORT, DB_PASSWORD, DB_DATABASE } = process.env;
 
 /**
  * Membuat koneksi database menggunakan method createConnection
@@ -14,6 +14,7 @@ const { DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE } = process.env;
 const db = mysql.createConnection({
   host: DB_HOST,
   user: DB_USERNAME,
+  port: DB_PORT,
   password: DB_PASSWORD,
   database: DB_DATABASE,
 });

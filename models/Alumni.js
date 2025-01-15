@@ -8,12 +8,29 @@ const AlumniModel = {
     db.query(query, callback);
   },
   create: (data, callback) => {
-    const query = "INSERT INTO alumni (name, status) VALUES (?, ?)";
-    db.query(query, [data.name, data.status], callback);
+    const query = `
+      INSERT INTO alumni 
+      (name, phone, address, graduation_year, status, company_name, position) 
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `;
+    db.query(
+      query, 
+      [ data.name, data.phone, data.address, data.graduation_year, data.status, data.company_name, data.position ], 
+      callback
+    );
   },
   update: (id, data, callback) => {
-    const query = "UPDATE alumni SET name = ?, status = ? WHERE id = ?";
-    db.query(query, [data.name, data.status, id], callback);
+    const query = `
+      UPDATE alumni 
+      SET 
+        name = ?, phone = ?, address = ?, graduation_year = ?, status = ?, company_name = ?, position = ? 
+      WHERE id = ?
+    `;
+    db.query(
+      query, 
+      [ data.name, data.phone, data.address, data.graduation_year, data.status, data.company_name, data.position, id ], 
+      callback
+    );
   },
   delete: (id, callback) => {
     const query = "DELETE FROM alumni WHERE id = ?";
